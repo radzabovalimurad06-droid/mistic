@@ -37,14 +37,14 @@ public class MisticEntity extends HostileEntity {
         this.experiencePoints = 15;
     }
 
-    public static DefaultAttributeContainer.Builder createMisticAttributes() {
-        return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 50.0)          // 25 сердец
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1)       // ~2 блока/сек
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0)        // 2 сердца
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 70.0)        // для pathfinding
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.6);
-    }
+public static DefaultAttributeContainer.Builder createMisticAttributes() {
+    return HostileEntity.createHostileAttributes()
+            .add(EntityAttributes.MAX_HEALTH, 50.0)
+            .add(EntityAttributes.MOVEMENT_SPEED, 0.1)
+            .add(EntityAttributes.ATTACK_DAMAGE, 4.0)
+            .add(EntityAttributes.FOLLOW_RANGE, 70.0)
+            .add(EntityAttributes.KNOCKBACK_RESISTANCE, 0.6);
+}
 
     @Override
     protected void initGoals() {
