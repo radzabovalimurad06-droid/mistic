@@ -2,6 +2,7 @@ package com.example.mistic;
 
 import com.example.mistic.registry.ModEntities;
 import com.example.mistic.registry.ModSounds;
+import com.example.mistic.registry.ModSpawnEggs;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import org.slf4j.Logger;
@@ -15,9 +16,12 @@ public class MisticMod implements ModInitializer {
     public void onInitialize() {
         ModSounds.register();
         ModEntities.register();
+        ModSpawnEggs.register();
 
-        // Регистрируем атрибуты сущности
-        FabricDefaultAttributeRegistry.register(ModEntities.MISTIC, com.example.mistic.entity.MisticEntity.createMisticAttributes());
+        FabricDefaultAttributeRegistry.register(
+                ModEntities.MISTIC,
+                com.example.mistic.entity.MisticEntity.createMisticAttributes()
+        );
 
         LOGGER.info("Mistic mod initialized. He is watching...");
     }
