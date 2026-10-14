@@ -1,5 +1,6 @@
 package com.example.mistic;
 
+import com.example.mistic.entity.MisticSpawner;
 import com.example.mistic.registry.ModEntities;
 import com.example.mistic.registry.ModSounds;
 import com.example.mistic.registry.ModSpawnEggs;
@@ -17,6 +18,7 @@ public class MisticMod implements ModInitializer {
         ModSounds.register();
         ModEntities.register();
         ModSpawnEggs.register();
+        MisticSpawner.register();
 
         FabricDefaultAttributeRegistry.register(
                 ModEntities.MISTIC,
