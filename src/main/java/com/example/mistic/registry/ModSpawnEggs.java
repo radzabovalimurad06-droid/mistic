@@ -12,8 +12,6 @@ import net.minecraft.util.Identifier;
 public class ModSpawnEggs {
     public static final Item MISTIC_SPAWN_EGG = new SpawnEggItem(
             ModEntities.MISTIC,
-            0x1a1a1a,  // базовый: почти чёрный
-            0x8b0000,  // пятна: тёмно-красный
             new Item.Settings()
     );
 
@@ -22,7 +20,6 @@ public class ModSpawnEggs {
                 Identifier.of(MisticMod.MOD_ID, "mistic_spawn_egg"),
                 MISTIC_SPAWN_EGG);
 
-        // Добавляем яйцо во вкладку "Spawn Eggs"
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
             entries.add(MISTIC_SPAWN_EGG);
         });
