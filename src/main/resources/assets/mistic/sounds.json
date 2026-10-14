@@ -1,0 +1,29 @@
+{
+  "mistic_heartbeat": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.warden.heartbeat",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.mistic.heartbeat"
+  },
+  "mistic_growl": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.zombie.ambient",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.mistic.growl"
+  },
+  "mistic_step": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.warden.step",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.mistic.step"
+  }
+}
