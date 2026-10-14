@@ -188,22 +188,20 @@ public class MisticEntity extends HostileEntity {
         );
     }
 
-    // ====== УРОН ТОЛЬКО ОТ ЖЕЛЕЗНОГО МЕЧА ======
-    @Override
-    public boolean damage(DamageSource source, float amount) {
-        // Пропускаем только урон от игрока с железным мечом в руке
-        if (source.getAttacker() instanceof PlayerEntity player) {
-            ItemStack mainHand = player.getMainHandStack();
-            if (mainHand.getItem() == Items.IRON_SWORD) {
-                return super.damage(source, amount);
-            }
-            // Всё остальное — не проходит
-            return false;
+// ====== УРОН ТОЛЬКО ОТ ЖЕЛЕЗНОГО МЕЧА (1.21.4) ======
+@Override
+public boolean damage(net.minecraft.server.world.ServerWorld world, DamageSource source, float amount) {
+    // Пропускаем только урон от игрока с железным мечом в руке
+    if (source.getAttacker() instanceof PlayerEntity player) {
+        ItemStack mainHand = player.getMainHandStack();
+        if (mainHand.getItem() == Items.IRON_SWORD) {
+            return super.damage(world, source, amount);
         }
-
-        // Урон не от игрока (падение, зелья, другие мобы) — не проходит
         return false;
     }
+
+    return false;
+}
 
     // ====== ЗВУКИ ======
     @Override
