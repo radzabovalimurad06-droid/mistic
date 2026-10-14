@@ -4,8 +4,9 @@ import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.player.PlayerEntity;
 
 /**
- * Кастомная цель: Mistic выбирает игрока целью,
- * если может его "увидеть" по нашей логике.
+ * Кастомная цель: Mistic выбирает игрока целью и начинает охоту,
+ * если игрок находится в радиусе HUNT_TRIGGER_RANGE (15 блоков).
+ * Охота запускается СРАЗУ, без таймера, даже если Mistic не видит игрока.
  */
 public class MisticTargetGoal extends ActiveTargetGoal<PlayerEntity> {
 
@@ -18,24 +19,32 @@ public class MisticTargetGoal extends ActiveTargetGoal<PlayerEntity> {
 
     @Override
     public boolean canStart() {
-        // Не начинаем охоту, если цель уже есть
-        if (this.mistic.getTarget() != null) return false;
+        // Если уже охотимся — не перезапускаем
+        if (this.mistic.isHunting()) return false;
 
-        // Ищем ближайшего игрока в радиусе 12
-        PlayerEntity nearest = this.mistic.getWorld().getClosestPlayer(this.mistic, 12.0);
+        // Ищем ближайшего игрока в радиусе охоты (15 блоков)
+        PlayerEntity nearest = this.mistic.getWorld().getClosestPlayer(
+                this.mistic, MisticEntity.HUNT_TRIGGER_RANGE);
+
         if (nearest == null) return false;
 
-        // Проверяем нашу логику видимости
-        if (!this.mistic.canSeePlayer(nearest)) return false;
+        // Игнорируем креатив/спектатор
+        if (nearest.isCreative() || nearest.isSpectator()) return false;
 
-        // Всё ок — назначаем целью
-        this.target = nearest;
+        // Живой?
+        if (!nearest.isAlive()) return false;
+
+        // Запускаем охоту
+        this.mistic.startHunting(nearest);
         return true;
     }
 
     @Override
     public void start() {
-        this.mistic.setTarget(this.target);
+        // Охота уже запущена в canStart() — здесь только финализируем
+        if (this.mistic.getTarget() == null) {
+            this.mistic.setTarget(this.target);
+        }
         super.start();
     }
 }
