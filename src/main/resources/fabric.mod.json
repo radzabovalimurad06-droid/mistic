@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "mistic",
+  "version": "${version}",
+  "name": "Mistic",
+  "description": "Horror entity that hunts you at night.",
+  "authors": [
+    "You"
+  ],
+  "license": "MIT",
+  "icon": "assets/mistic/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.mistic.MisticMod"
+    ],
+    "client": [
+      "com.example.mistic.MisticClientMod"
+    ]
+  },
+  "mixins": [
+    "mistic.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
