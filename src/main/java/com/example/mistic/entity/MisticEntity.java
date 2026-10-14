@@ -191,17 +191,6 @@ public static DefaultAttributeContainer.Builder createMisticAttributes() {
         this.playSound(ModSounds.MISTIC_STEP, 0.5f, 1.0f);
     }
 
-    // ====== АТАКА ======
-    @Override
-    public boolean tryAttack(Entity target) {
-        boolean result = super.tryAttack(target);
-        if (result && target instanceof PlayerEntity) {
-            // Дополнительный "прыжок страха" — можно добавить эффект слепоты
-            // ((PlayerEntity) target).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 40, 0));
-        }
-        return result;
-    }
-
     // ====== ЯВЛЯЕТСЯ ЛИ ПРЕСЛЕДОВАТЕЛЕМ ======
     @Override
     public boolean canTarget(LivingEntity target) {
